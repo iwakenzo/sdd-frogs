@@ -26,7 +26,7 @@ distribuídas entre 7 integrantes.
 
 - [X] T001 [P] Adicionar `json-server@0.17.4` às devDependencies e os scripts `api` (`json-server --watch db.json --port 3001`) e `dev` em `package.json`
 - [X] T002 [P] Criar `db.json` na raiz com a coleção `sapos` e 3 registros iniciais, cobrindo `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, `Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
-- [ ] T003 [P] Configurar proxy `/api` para `http://localhost:3001` com reescrita em `vite.config.js`, conforme `contracts/api-sapos.md`
+- [X] T003 [P] Configurar proxy `/api` para `http://localhost:3001` com reescrita em `vite.config.js`, conforme `contracts/api-sapos.md`
 - [X] T004 [P] Substituir os estilos do starter em `src/index.css` e `src/App.css` por base limpa: reset, tipografia, variáveis de cor e largura máxima de conteúdo
 
 ---
