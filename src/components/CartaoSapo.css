@@ -1,0 +1,40 @@
+.cartao-sapo {
+  background-color: var(--cor-fundo-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  padding: 20px;
+  overflow-wrap: anywhere;
+}
+
+.cartao-sapo-titulo {
+  margin-bottom: 16px;
+  color: var(--cor-destaque-escura);
+}
+
+.cartao-sapo-detalhes {
+  display: grid;
+  gap: 12px;
+}
+
+.cartao-sapo-linha {
+  display: grid;
+  gap: 4px;
+}
+
+.cartao-sapo-termo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+}
+
+.cartao-sapo-descricao {
+  color: var(--cor-texto-destaque);
+}
+
+.cartao-sapo-descricao.campo-nao-informado {
+  color: var(--cor-texto);
+  font-style: italic;
+}
