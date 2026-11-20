@@ -1,0 +1,31 @@
+{
+  "sapos": [
+    {
+      "id": 1,
+      "nomePopular": "Sapo-cururu",
+      "especie": "Rhinella diptycha",
+      "regiaoEncontrada": "Jardim do campus",
+      "periodo": "noturno",
+      "habitat": "Área úmida com vegetação baixa",
+      "observacoes": "Encontrado próximo ao lago após a chuva."
+    },
+    {
+      "id": 2,
+      "nomePopular": "Perereca-verde",
+      "especie": "Aplastodiscus arildae",
+      "regiaoEncontrada": "Trilha do rio",
+      "periodo": "crepuscular",
+      "habitat": "Mata ciliar",
+      "observacoes": "pererecaa"
+    },
+    {
+      "id": 3,
+      "nomePopular": "Rãzinha-das-folhas",
+      "especie": "Physalaemus cuvieri",
+      "regiaoEncontrada": "Horta comunitária",
+      "periodo": "diurno",
+      "habitat": "",
+      "observacoes": "Registro com campos opcionais vazios."
+    }
+  ]
+}
