@@ -111,8 +111,8 @@ distribuídas entre 7 integrantes.
 
 | Integrante | Frente | Tarefas | Entrega principal |
 |---|---|---|---|
-| 1 | Infraestrutura | T001, T003, T008, T021 | Scripts npm, proxy, shell da aplicação, build |
-| 2 | Dados mock e limpeza | T002, T018 | `db.json` com seed e remoção de sobras do template |
+| 1 | Infraestrutura | T001, T002, T003,| Scripts npm, proxy, seed e estilos base |
+| 2 | Shell, limpeza e build | T008, T018, T021 | Shell com `PaginaInicial`, remoção de sobras do template e build |
 | 3 | Camada de API e lint | T005, T020 | Cliente HTTP `src/api/sapos.js` e lint limpo |
 | 4 | Validação e formulário | T006, T013, T014 | Regras de validação e formulário com mensagens |
 | 5 | Página e estados | T007, T011, T015, T016 | Estados da lista, envio, erro e limpeza do formulário |
