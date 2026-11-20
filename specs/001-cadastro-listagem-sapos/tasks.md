@@ -27,7 +27,7 @@ distribuídas entre 7 integrantes.
 - [ ] T001 [P] Adicionar `json-server@0.17.4` às devDependencies e os scripts `api` (`json-server --watch db.json --port 3001`) e `dev` em `package.json`
 - [ ] T002 [P] Criar `db.json` na raiz com a coleção `sapos` e 3 registros iniciais, cobrindo `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, `Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
 - [ ] T003 [P] Configurar proxy `/api` para `http://localhost:3001` com reescrita em `vite.config.js`, conforme `contracts/api-sapos.md`
-- [ ] T004 [P] Substituir os estilos do starter em `src/index.css` e `src/App.css` por base limpa: reset, tipografia, variáveis de cor e largura máxima de conteúdo
+- [X] T004 [P] Substituir os estilos do starter em `src/index.css` e `src/App.css` por base limpa: reset, tipografia, variáveis de cor e largura máxima de conteúdo
 
 ---
 
@@ -52,8 +52,8 @@ distribuídas entre 7 integrantes.
 
 **Teste independente**: com `db.json` preenchido, abrir a aplicação e conferir a lista; parar o JSON Server e conferir a mensagem de falha com nova tentativa; esvaziar `db.json` e conferir a mensagem de catálogo vazio.
 
-- [ ] T009 [P] [US1] Criar `src/components/CartaoSapo.jsx` e `src/components/CartaoSapo.css` exibindo nome popular, espécie, região, período, habitat e observações, com "não informado" para opcionais vazios, conforme `data-model.md` (`Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
-- [ ] T010 [US1] Criar `src/components/ListaSapos.jsx` e `src/components/ListaSapos.css` recebendo a lista e renderizando `CartaoSapo` por item (depende de T009)
+- [X] T009 [P] [US1] Criar `src/components/CartaoSapo.jsx` e `src/components/CartaoSapo.css` exibindo nome popular, espécie, região, período, habitat e observações, com "não informado" para opcionais vazios, conforme `data-model.md` (`Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
+- [X] T010 [US1] Criar `src/components/ListaSapos.jsx` e `src/components/ListaSapos.css` recebendo a lista e renderizando `CartaoSapo` por item (depende de T009)
 - [ ] T011 [US1] Implementar o carregamento em `src/pages/PaginaInicial.jsx` com `listarSapos`, estados `carregando | pronta | vazia | erro`, nova tentativa e renderização de `ListaSapos` ou `MensagemStatus` (depende de T005, T007, T008, T010)
 - [ ] T012 [US1] Validar US1 no navegador seguindo os cenários 1, 4 e 6 de `quickstart.md` e registrar data, responsável e resultado obtido
 
