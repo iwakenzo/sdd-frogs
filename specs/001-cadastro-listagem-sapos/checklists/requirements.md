@@ -34,8 +34,9 @@
 - React/Vite, JSON Server, HTTP e as pastas `src/api`, `src/components` e `src/pages` foram
   fornecidos explicitamente pelo solicitante e estão registrados como **restrições técnicas**
   (NFR-001 a NFR-005), não como requisitos funcionais de implementação.
-- A decisão de manter os nomes de pasta padrão do template Vite em inglês exige emenda PATCH
-  1.0.1 no Princípio I da constituição do projeto.
+- Os nomes de pasta padrão do template Vite (`src/api`, `src/components` e `src/pages`) permanecem
+  em inglês e são exceção expressa no Princípio I da constituição v1.0.1; arquivos e
+  identificadores dentro delas seguem em português.
 - O campo "período" foi definido como seleção entre noturno, diurno e crepuscular.
 - Os títulos das seções estão em português; os identificadores `FR-###` e `SC-###` foram mantidos
   para uso pelas próximas fases.

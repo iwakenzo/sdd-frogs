@@ -1,17 +1,20 @@
 <!--
 Sync Impact Report
-- Versão: (nenhuma — scaffold) → 1.0.0
-- Princípios: placeholders substituídos por 4 princípios definidos pelo time
-  (o template previa 5 slots; o 5º foi omitido por decisão do time)
-  - I. Idioma do Código em Português (novo)
-  - II. Componentização React com Responsabilidade Única (novo)
-  - III. Simplicidade e YAGNI (novo)
-  - IV. Qualidade Verificável (novo)
-- Seções adicionadas: Restrições Técnicas; Fluxo de Desenvolvimento
-- Seções removidas: placeholders de seção 2 e 3 (substituídos por Restrições Técnicas e
-  Fluxo de Desenvolvimento)
-- Governança: preenchida (antes placeholder)
+- Versão: 1.0.0 → 1.0.1
+- Tipo de incremento: PATCH (esclarecimento de exceção já existente, sem novo princípio)
+- Princípios modificados:
+  - I. Idioma do Código em Português: exceção explícita para as pastas de infraestrutura
+    (`src/api`, `src/components`, `src/pages`) e para pastas e arquivos gerados pelo template
+    Vite; proibição de pastas novas com nome em inglês
+  - II. Componentização React: caminho do diretório de componentes corrigido de
+    `src/componentes/` para `src/components/`, alinhado à exceção do Princípio I
+- Seções adicionadas: nenhuma
+- Seções removidas: nenhuma
+- Governança: inalterada
 - TODOs: nenhum
+- Ajustes dependentes: `spec.md` (NFR-002 e NFR-005), `checklists/requirements.md`, `plan.md`
+  e `research.md` da funcionalidade 001 deixam de registrar violação e passam a citar a
+  exceção constitucional; `src/utils/` renomeado para `src/utilitarios/` nos artefatos
 -->
 
 # Constituição do SDD Frogs
@@ -30,6 +33,12 @@ de commit.
 - Exceções permitidas: palavras-chave da linguagem, APIs e convenções obrigatórias de
   bibliotecas (`useState`, `useEffect`, `className`, `onClick`, `children`), nomes de
   pacotes de terceiros e arquivos cujo nome é exigido por ferramentas externas.
+- Pastas de infraestrutura MUST manter o nome definido pelo projeto ou pela ferramenta:
+  `src/api`, `src/components` e `src/pages` (estrutura exigida do projeto) e `src/assets`,
+  `public/`, `index.html`, `vite.config.js` e `src/main.jsx` (gerados pelo template Vite).
+- Dentro dessas pastas, arquivos, componentes, hooks, funções e variáveis criados pelo time MUST
+  ter nome em português (ex.: `src/components/CartaoSapo.jsx`); nenhuma pasta nova criada pelo
+  time MUST ter nome em inglês (ex.: `src/utilitarios/`, não `src/utils/`).
 - Textos exibidos ao usuário MUST usar acentuação correta e linguagem clara.
 
 **Racional**: o time e a avaliação leem em português; a consistência de idioma reduz
@@ -37,7 +46,7 @@ custo cognitivo e evita identificadores híbridos difíceis de manter.
 
 ### II. Componentização React com Responsabilidade Única
 
-Cada componente MUST ter uma única responsabilidade e viver em `src/componentes/`.
+Cada componente MUST ter uma única responsabilidade e viver em `src/components/`.
 
 - Estado MUST residir no menor nível possível; estado derivável MUST ser calculado, não armazenado.
 - Arquivos de componente SHOULD permanecer abaixo de 200 linhas; acima disso, a
@@ -114,4 +123,4 @@ Nenhuma tarefa MUST ser considerada concluída sem verificação objetiva.
   justificada no plan.
 - A conformidade MUST ser reavaliada a cada nova funcionalidade, antes da implementação.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-20 | **Last Amended**: 2026-11-20
+**Version**: 1.0.1 | **Ratified**: 2026-11-20 | **Last Amended**: 2026-11-20

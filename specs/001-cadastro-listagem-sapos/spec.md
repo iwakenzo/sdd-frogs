@@ -104,11 +104,12 @@ ele aparece na listagem; repetir com campos vazios e confirmar o bloqueio.
 
 - **NFR-001**: Interface web executada em navegador moderno, construída com React e Vite.
 - **NFR-002**: Código organizado nas pastas `src/api`, `src/components` e `src/pages`
-  (nomes padrão do template Vite mantidos em inglês, por decisão do time).
+  (nomes padrão do template Vite, exceção expressa no Princípio I da constituição; arquivos e
+  identificadores dentro delas permanecem em português).
 - **NFR-003**: Comunicação com a fonte de dados por requisições HTTP.
 - **NFR-004**: Persistência dos registros por meio do JSON Server.
 - **NFR-005**: Nomes de campos e identificadores exigidos pelo serviço de dados são aceitos como
-  exceção à convenção de idioma.
+  exceção prevista no Princípio I da constituição.
 
 ### Entidades-Chave
 
