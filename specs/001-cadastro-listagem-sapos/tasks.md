@@ -121,6 +121,29 @@ distribuídas entre 7 integrantes.
 
 **Regra de ouro**: cada integrante só edita os arquivos das próprias tarefas. `PaginaInicial.jsx` e `FormularioSapo.jsx` têm dono único (integrantes 5 e 4) para evitar conflito de merge.
 
+### Proposta de integração entre as frentes 2, 3, 4 e 5
+
+**Frente 2 — Shell, limpeza e build**
+
+- Conectar `PaginaInicial` em `src/App.jsx` e combinar os estilos sem sobrescrever a lógica da página.
+- Alinhar a T008 com a frente 5: a tarefa prevê criar `PaginaInicial.jsx`, mas a regra de dono único atribui esse arquivo à frente 5.
+
+**Frente 3 — Camada de API**
+
+- Exportar as funções nomeadas assíncronas `listarSapos()` e `cadastrarSapo(dados)` em `src/api/sapos.js`.
+- Retornar um array na listagem e o registro criado com `id` no cadastro; ambas as funções lançam erro em caso de falha.
+
+**Frente 4 — Validação e formulário**
+
+- Exportar `FormularioSapo` como padrão e receber as props `aoEnviar` e `enviando`.
+- Após validar os campos, chamar `await aoEnviar(dados)`: `true` indica sucesso e permite limpar os campos; `false` indica falha ou envio duplicado e exige preservá-los.
+- Indicar o envio e desabilitar o botão enquanto `enviando` for verdadeiro. Os campos e suas validações seguem `data-model.md`.
+
+**Frente 5 — Página e estados**
+
+- Preparar `PaginaInicial.jsx`, conectar formulário, listagem e API e controlar carregamento, envio e nova tentativa.
+- Exibir a mensagem de erro de cadastro, sem exigir que o formulário a duplique; retornar o resultado do envio ao formulário conforme o contrato acima.
+
 ---
 
 ## Exemplos de execução paralela
