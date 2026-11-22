@@ -78,6 +78,14 @@
   opacity: 0.65;
 }
 
+.formulario-sapo-erro {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--cor-texto-destaque);
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 600px) {
   .formulario-sapo {
     padding: 16px;

@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { validarSapo } from '../utilitarios/validacao'
 import './FormularioSapo.css'
 
 const dadosIniciais = {
@@ -13,6 +14,7 @@ const dadosIniciais = {
 
 function FormularioSapo({ aoEnviar, enviando = false }) {
   const [dados, setDados] = useState(() => ({ ...dadosIniciais }))
+  const [erros, setErros] = useState({})
 
   function atualizarCampo(evento) {
     const { name, value } = evento.target
@@ -21,6 +23,13 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
       ...dadosAtuais,
       [name]: value,
     }))
+
+    setErros((errosAtuais) => {
+      const novosErros = { ...errosAtuais }
+      delete novosErros[name]
+
+      return novosErros
+    })
   }
 
   async function lidarComEnvio(evento) {
@@ -30,10 +39,19 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
       return
     }
 
-    const sucesso = await aoEnviar(dados)
+    const resultado = validarSapo(dados)
+
+    setErros(resultado.erros)
+
+    if (!resultado.valido) {
+      return
+    }
+
+    const sucesso = await aoEnviar(resultado.dados)
 
     if (sucesso === true) {
       setDados({ ...dadosIniciais })
+      setErros({})
     }
   }
 
@@ -41,6 +59,7 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
     <form
       className='formulario-sapo'
       onSubmit={lidarComEnvio}
+      noValidate
       aria-busy={enviando}
     >
       <div className='formulario-sapo-campo'>
@@ -52,7 +71,17 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           value={dados.nomePopular}
           onChange={atualizarCampo}
           placeholder='Ex.: Sapo-cururu'
+          required
+          aria-invalid={Boolean(erros.nomePopular)}
+          aria-describedby={
+            erros.nomePopular ? 'erro-nome-popular' : undefined
+          }
         />
+        {erros.nomePopular && (
+          <p id='erro-nome-popular' className='formulario-sapo-erro' role='alert'>
+            {erros.nomePopular}
+          </p>
+        )}
       </div>
 
       <div className='formulario-sapo-campo'>
@@ -64,7 +93,15 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           value={dados.especie}
           onChange={atualizarCampo}
           placeholder='Ex.: Rhinella marina'
+          required
+          aria-invalid={Boolean(erros.especie)}
+          aria-describedby={erros.especie ? 'erro-especie' : undefined}
         />
+        {erros.especie && (
+          <p id='erro-especie' className='formulario-sapo-erro' role='alert'>
+            {erros.especie}
+          </p>
+        )}
       </div>
 
       <div className='formulario-sapo-campo'>
@@ -76,7 +113,21 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           value={dados.regiaoEncontrada}
           onChange={atualizarCampo}
           placeholder='Ex.: Região Norte do Brasil'
+          required
+          aria-invalid={Boolean(erros.regiaoEncontrada)}
+          aria-describedby={
+            erros.regiaoEncontrada ? 'erro-regiao-encontrada' : undefined
+          }
         />
+        {erros.regiaoEncontrada && (
+          <p
+            id='erro-regiao-encontrada'
+            className='formulario-sapo-erro'
+            role='alert'
+          >
+            {erros.regiaoEncontrada}
+          </p>
+        )}
       </div>
 
       <div className='formulario-sapo-campo'>
@@ -103,7 +154,14 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           value={dados.habitat}
           onChange={atualizarCampo}
           placeholder='Ex.: Florestas, brejos e áreas úmidas'
+          aria-invalid={Boolean(erros.habitat)}
+          aria-describedby={erros.habitat ? 'erro-habitat' : undefined}
         />
+        {erros.habitat && (
+          <p id='erro-habitat' className='formulario-sapo-erro' role='alert'>
+            {erros.habitat}
+          </p>
+        )}
       </div>
 
       <div className='formulario-sapo-campo'>
@@ -115,7 +173,20 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           onChange={atualizarCampo}
           placeholder='Adicione informações complementares sobre o sapo.'
           rows={4}
+          aria-invalid={Boolean(erros.observacoes)}
+          aria-describedby={
+            erros.observacoes ? 'erro-observacoes' : undefined
+          }
         />
+        {erros.observacoes && (
+          <p
+            id='erro-observacoes'
+            className='formulario-sapo-erro'
+            role='alert'
+          >
+            {erros.observacoes}
+          </p>
+        )}
       </div>
 
       <button type='submit' disabled={enviando}>
