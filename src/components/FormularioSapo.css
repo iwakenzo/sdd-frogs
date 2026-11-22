@@ -1,0 +1,89 @@
+
+.formulario-sapo {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  padding: 24px;
+  background-color: var(--cor-fundo-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+}
+
+.formulario-sapo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formulario-sapo-campo label {
+  color: var(--cor-texto-destaque);
+  font-weight: 600;
+}
+
+.formulario-sapo-campo input,
+.formulario-sapo-campo select,
+.formulario-sapo-campo textarea {
+  width: 100%;
+  padding: 12px;
+  color: var(--cor-texto);
+  font: inherit;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+}
+
+.formulario-sapo-campo input::placeholder,
+.formulario-sapo-campo textarea::placeholder {
+  color: var(--cor-texto);
+  opacity: 0.85;
+}
+
+.formulario-sapo-campo input:focus-visible,
+.formulario-sapo-campo select:focus-visible,
+.formulario-sapo-campo textarea:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+.formulario-sapo-campo textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.formulario-sapo button {
+  justify-self: start;
+  padding: 12px 24px;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  background-color: var(--cor-destaque);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.formulario-sapo button:hover:not(:disabled) {
+  background-color: var(--cor-destaque-escura);
+}
+
+.formulario-sapo button:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+
+.formulario-sapo button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 600px) {
+  .formulario-sapo {
+    padding: 16px;
+  }
+
+  .formulario-sapo button {
+    width: 100%;
+  }
+}
