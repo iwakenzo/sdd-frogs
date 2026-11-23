@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { validarSapo } from '../utilitarios/validacao'
 import './FormularioSapo.css'
@@ -73,9 +72,7 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           placeholder='Ex.: Sapo-cururu'
           required
           aria-invalid={Boolean(erros.nomePopular)}
-          aria-describedby={
-            erros.nomePopular ? 'erro-nome-popular' : undefined
-          }
+          aria-describedby={erros.nomePopular ? 'erro-nome-popular' : undefined}
         />
         {erros.nomePopular && (
           <p id='erro-nome-popular' className='formulario-sapo-erro' role='alert'>
@@ -120,11 +117,7 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           }
         />
         {erros.regiaoEncontrada && (
-          <p
-            id='erro-regiao-encontrada'
-            className='formulario-sapo-erro'
-            role='alert'
-          >
+          <p id='erro-regiao-encontrada' className='formulario-sapo-erro' role='alert'>
             {erros.regiaoEncontrada}
           </p>
         )}
@@ -137,12 +130,19 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           name='periodo'
           value={dados.periodo}
           onChange={atualizarCampo}
+          aria-invalid={Boolean(erros.periodo)}
+          aria-describedby={erros.periodo ? 'erro-periodo' : undefined}
         >
           <option value=''>Não informado</option>
           <option value='noturno'>Noturno</option>
           <option value='diurno'>Diurno</option>
           <option value='crepuscular'>Crepuscular</option>
         </select>
+        {erros.periodo && (
+          <p id='erro-periodo' className='formulario-sapo-erro' role='alert'>
+            {erros.periodo}
+          </p>
+        )}
       </div>
 
       <div className='formulario-sapo-campo'>
@@ -174,16 +174,10 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
           placeholder='Adicione informações complementares sobre o sapo.'
           rows={4}
           aria-invalid={Boolean(erros.observacoes)}
-          aria-describedby={
-            erros.observacoes ? 'erro-observacoes' : undefined
-          }
+          aria-describedby={erros.observacoes ? 'erro-observacoes' : undefined}
         />
         {erros.observacoes && (
-          <p
-            id='erro-observacoes'
-            className='formulario-sapo-erro'
-            role='alert'
-          >
+          <p id='erro-observacoes' className='formulario-sapo-erro' role='alert'>
             {erros.observacoes}
           </p>
         )}

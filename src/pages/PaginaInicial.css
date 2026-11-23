@@ -1,0 +1,30 @@
+.pagina-inicial-cabecalho {
+  padding-block: 40px 24px;
+}
+
+.pagina-inicial-conteudo {
+  display: grid;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.pagina-inicial-secao {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .pagina-inicial-cabecalho {
+    padding-block: 24px 20px;
+  }
+
+  .pagina-inicial-conteudo {
+    gap: 32px;
+    padding-bottom: 24px;
+  }
+
+  .pagina-inicial-secao {
+    gap: 16px;
+  }
+}

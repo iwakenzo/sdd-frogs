@@ -1,16 +1,173 @@
-# React + Vite
+# FrogDex
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Catálogo de observações de sapos desenvolvido com React e Vite. A aplicação permite consultar
+registros existentes e cadastrar novas observações, com validação dos campos e atualização
+da listagem sem recarregar a página.
 
-Currently, two official plugins are available:
+O projeto é executado localmente e utiliza uma API simulada com JSON Server. Não há
+necessidade de conta ou autenticação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- **Consulta do catálogo:** exibe nome popular, espécie, região encontrada, período de atividade,
+  habitat e observações, com os registros mais recentes no início.
+- **Cadastro de observações:** permite registrar sapos com três campos obrigatórios e informações
+  complementares opcionais.
+- **Validação por campo:** bloqueia obrigatórios vazios ou preenchidos apenas com espaços e
+  verifica os limites de tamanho e as opções de período.
+- **Atualização imediata:** após um cadastro bem-sucedido, insere o registro retornado pela API
+  no início da lista e limpa o formulário.
+- **Estados de comunicação:** apresenta mensagens distintas para carregamento, catálogo vazio
+  e falha de consulta, com opção de tentar novamente.
+- **Recuperação de falhas:** preserva os dados do formulário quando o cadastro falha e permite
+  reenviar; durante o envio, desabilita o botão para impedir cadastros simultâneos.
+- **Persistência local:** mantém os registros no arquivo `db.json` entre recarregamentos da
+  página e reinícios dos serviços.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Dados do cadastro
 
-## Expanding the Oxlint configuration
+| Campo | Obrigatório | Regra |
+|---|---|---|
+| Nome popular | Sim | De 1 a 80 caracteres |
+| Espécie | Sim | De 1 a 120 caracteres |
+| Região encontrada | Sim | De 1 a 120 caracteres |
+| Período de atividade | Não | Noturno, diurno ou crepuscular |
+| Habitat | Não | Até 200 caracteres |
+| Observações | Não | Até 500 caracteres |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Os limites são verificados após remover espaços no início e no fim dos valores. Campos opcionais
+vazios aparecem na listagem como “não informado”. Cada registro recebe um identificador gerado
+pelo JSON Server. Observações com o mesmo nome, espécie e região são permitidas.
+
+## Tecnologias
+
+| Tecnologia | Uso |
+|---|---|
+| React 19 | Componentes e estado da interface |
+| Vite 8 | Servidor de desenvolvimento e geração da aplicação |
+| JavaScript com módulos ESM | Lógica da aplicação e comunicação HTTP com `fetch` |
+| CSS | Estilos e organização visual |
+| JSON Server 0.17.4 | API simulada e persistência em arquivo |
+| Oxlint | Análise estática do código |
+
+## Pré-requisitos
+
+- Node.js compatível com o Vite 8; versão utilizada no projeto: **24.19.0**.
+- npm instalado com o Node.js.
+- Portas **5173** (aplicação) e **3001** (API) disponíveis.
+- Navegador moderno em ambiente de computador.
+
+## Instalação
+
+Na raiz do projeto:
+
+```bash
+npm install
+```
+
+O JSON Server já está incluído nas dependências de desenvolvimento; não é necessário
+instalá-lo separadamente.
+
+## Execução local
+
+Abra dois terminais na raiz do projeto e mantenha os dois processos em execução:
+
+```bash
+# Terminal 1 — API simulada
+npm run api
+```
+
+```bash
+# Terminal 2 — aplicação
+npm run dev
+```
+
+Acesse a aplicação em **http://localhost:5173**. Confira também o endereço informado no terminal
+do Vite, pois ele pode escolher outra porta se a padrão estiver ocupada.
+
+A API pode ser consultada diretamente em **http://localhost:3001/sapos**. A interface usa o caminho
+relativo `/api/sapos`, encaminhado pelo servidor do Vite para a API na porta 3001.
+
+Para encerrar os serviços, pressione `Ctrl+C` em cada terminal.
+
+## Comandos disponíveis
+
+| Comando | Descrição |
+|---|---|
+| `npm install` | Instala as dependências |
+| `npm run api` | Inicia o JSON Server com acompanhamento de alterações no `db.json`, na porta 3001 |
+| `npm run dev` | Inicia o servidor de desenvolvimento do Vite |
+| `npm run lint` | Executa a análise estática com Oxlint |
+| `npm run build` | Gera os arquivos estáticos da aplicação em `dist/` |
+| `npm run preview` | Disponibiliza uma prévia local dos arquivos gerados |
+
+O comando de geração não inicia a API nem cria um serviço de produção. O fluxo recomendado para
+usar a aplicação localmente é `npm run api` junto com `npm run dev`, conforme descrito acima.
+
+## Persistência e API
+
+O `db.json` contém três registros iniciais. O JSON Server lê e grava a coleção `sapos` nesse
+arquivo; os dados não ficam apenas na memória do navegador.
+
+| Operação | Caminho usado pela interface | Resultado |
+|---|---|---|
+| `GET` | `/api/sapos` | Retorna os registros cadastrados |
+| `POST` | `/api/sapos` | Salva uma observação e retorna o registro com o identificador |
+
+**Atenção:** os cadastros alteram o `db.json`. Faça uma cópia de segurança antes de substituir
+ou esvaziar esse arquivo em testes. A API é uma simulação local, sem autenticação ou banco de
+dados de produção; não deve ser exposta como um serviço público.
+
+## Verificação de qualidade
+
+```bash
+npm run lint
+npm run build
+```
+
+Espera-se que a análise estática termine sem erros nem avisos novos e que a geração da aplicação
+conclua com sucesso. Esta versão não possui uma suíte de testes automatizados; a verificação
+funcional é feita no navegador, incluindo cadastro, listagem, entradas inválidas e falhas da API.
+
+Os cenários estão no [guia de validação rápida](specs/001-cadastro-listagem-sapos/quickstart.md).
+
+## Estrutura do projeto
+
+```text
+src/
+├── api/           # Comunicação HTTP com a API de sapos
+├── components/    # Formulário, cartões, lista e mensagens de estado
+├── pages/         # Página inicial e integração dos fluxos
+├── utilitarios/   # Regras de validação
+├── App.jsx        # Composição principal da aplicação
+└── main.jsx       # Inicialização do React
+db.json            # Registros persistidos pela API simulada
+specs/             # Especificação, contratos e roteiro de validação
+vite.config.js     # Configuração do Vite e encaminhamento da API
+```
+
+## Documentação do projeto
+
+- [Especificação e requisitos](specs/001-cadastro-listagem-sapos/spec.md)
+- [Plano de implementação](specs/001-cadastro-listagem-sapos/plan.md)
+- [Modelo de dados](specs/001-cadastro-listagem-sapos/data-model.md)
+- [Contrato da API](specs/001-cadastro-listagem-sapos/contracts/api-sapos.md)
+- [Lista de tarefas](specs/001-cadastro-listagem-sapos/tasks.md)
+- [Guia de validação rápida](specs/001-cadastro-listagem-sapos/quickstart.md)
+
+## Solução de problemas
+
+| Situação | O que verificar |
+|---|---|
+| A listagem não carrega | Confirme que `npm run api` está ativo na porta 3001; depois, clique em “Tentar novamente” |
+| O cadastro falha | Verifique o terminal da API e envie novamente; os dados preenchidos são preservados |
+| A aplicação usa outra porta | Consulte o endereço informado pelo Vite no terminal |
+| Os registros iniciais não aparecem | Confira a coleção `sapos` no `db.json`; o arquivo pode ter sido alterado por cadastros ou testes |
+
+## Limitações desta versão
+
+- Execução local, com API simulada e armazenamento em arquivo.
+- Sem autenticação ou controle de acesso.
+- Sem edição, exclusão, busca, filtros ou paginação na interface.
+- Sem funcionamento desconectado: consulta e cadastro dependem da API em execução.
+- Foco em navegadores modernos em computadores; publicação em produção não faz parte do escopo.

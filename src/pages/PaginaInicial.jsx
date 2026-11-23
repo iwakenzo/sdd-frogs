@@ -3,6 +3,7 @@ import { cadastrarSapo, listarSapos } from '../api/sapos'
 import FormularioSapo from '../components/FormularioSapo'
 import ListaSapos from '../components/ListaSapos'
 import MensagemStatus from '../components/MensagemStatus'
+import './PaginaInicial.css'
 
 function PaginaInicial() {
   const [sapos, setSapos] = useState([])
@@ -66,15 +67,15 @@ function PaginaInicial() {
 
   return (
     <>
-      <header><h1>FrogDex</h1></header>
-      <main>
-        <section aria-labelledby="titulo-cadastro">
+      <header className="pagina-inicial-cabecalho"><h1>FrogDex</h1></header>
+      <main className="pagina-inicial-conteudo">
+        <section className="pagina-inicial-secao" aria-labelledby="titulo-cadastro">
           <h2 id="titulo-cadastro">Cadastrar sapo</h2>
           <FormularioSapo aoEnviar={aoCadastrar} enviando={enviando} />
           {erroCadastro && <p role="alert">Não foi possível realizar o cadastro.</p>}
         </section>
 
-        <section aria-labelledby="titulo-lista">
+        <section className="pagina-inicial-secao" aria-labelledby="titulo-lista">
           <h2 id="titulo-lista">Sapos cadastrados</h2>
           {estadoLista !== 'pronta' && (
             <MensagemStatus

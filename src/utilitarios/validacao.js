@@ -1,4 +1,3 @@
-
 const limites = {
   nomePopular: 80,
   especie: 120,
@@ -27,6 +26,10 @@ export function validarSapo(dados) {
   }
 
   const erros = {}
+
+  if (!['', 'noturno', 'diurno', 'crepuscular'].includes(dadosValidados.periodo)) {
+    erros.periodo = 'Selecione um período válido.'
+  }
 
   camposTexto.forEach((campo) => {
     const valor = String(origem[campo] ?? '').trim()
