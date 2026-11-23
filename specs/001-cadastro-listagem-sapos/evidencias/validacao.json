@@ -1,0 +1,15 @@
+{
+  "data": "2026-11-23T13:36:21.531Z",
+  "responsavel": "Agente de integração",
+  "verificacoes": 38,
+  "resultado": "aprovado",
+  "cobertura": [
+    "períodos aceitos e desconhecidos",
+    "obrigatórios com espaços",
+    "limites exatos e um caractere excedente em cinco campos",
+    "acentuação e trim",
+    "opcionais vazios",
+    "entrada ausente",
+    "entrada original preservada"
+  ]
+}

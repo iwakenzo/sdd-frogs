@@ -1,6 +1,27 @@
 .mensagem-status {
   padding: 24px;
   text-align: center;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+.mensagem-status--carregando {
+  background-color: var(--cor-fundo-cartao);
+  border-style: dashed;
+}
+
+.mensagem-status--vazia {
+  color: var(--cor-destaque-escura);
+  background-color: #edf7ef;
+  border-color: var(--cor-destaque);
+}
+
+.mensagem-status--erro {
+  color: #842323;
+  background-color: #fff1f1;
+  border-color: #b54444;
+  font-weight: 600;
 }
 
 .mensagem-status p {
@@ -9,5 +30,19 @@
 
 .mensagem-status button {
   margin-top: 12px;
+  padding: 10px 16px;
+  color: inherit;
+  background-color: var(--cor-fundo-cartao);
+  border: 1px solid currentColor;
+  border-radius: 8px;
   cursor: pointer;
+}
+
+.mensagem-status button:hover {
+  text-decoration: underline;
+}
+
+.mensagem-status button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }

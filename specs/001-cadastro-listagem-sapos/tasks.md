@@ -8,8 +8,9 @@ description: "Lista de tarefas para implementação da funcionalidade"
 
 **Pré-requisitos**: plan.md (obrigatório), spec.md (obrigatório), research.md, data-model.md, contracts/
 
-**Testes**: não há testes automatizados nesta versão; a verificação é feita por `npm run lint`,
-`npm run build` e pelos cenários de `quickstart.md`.
+**Testes**: não há suíte de testes automatizados versionada nesta versão; a verificação é feita
+por `npm run lint`, `npm run build` e pelos cenários de `quickstart.md`. A integração inclui
+verificação pontual assistida em navegador, sem novas dependências no projeto.
 
 **Organização**: tarefas agrupadas por história de usuário (US1 listagem, US2 cadastro) e
 distribuídas entre 7 integrantes.
@@ -37,10 +38,10 @@ distribuídas entre 7 integrantes.
 
 **⚠️ Nenhuma história começa antes desta fase.**
 
-- [ ] T005 [P] Implementar `listarSapos` e `cadastrarSapo` com `fetch` em `src/api/sapos.js`, lançando erro em falha de rede ou resposta não 2xx e usando o `Sapo.id` retornado pelo servidor, conforme `contracts/api-sapos.md`
-- [ ] T006 [P] Implementar `validarSapo` e as mensagens por campo em `src/utilitarios/validacao.js`, aplicando `trim` e as regras de `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, limites de `Sapo.habitat` e `Sapo.observacoes`)
-- [ ] T007 [P] Criar `src/components/MensagemStatus.jsx` e `src/components/MensagemStatus.css` com as variantes `carregando`, `vazia` e `erro`, incluindo botão "Tentar novamente" quando houver ação de recuperação
-- [ ] T008 Criar `src/App.jsx` como shell e `src/pages/PaginaInicial.jsx` + `src/pages/PaginaInicial.css` com cabeçalho "FrogDex" e área principal vazia (depende de T004)
+- [X] T005 [P] Implementar `listarSapos` e `cadastrarSapo` com `fetch` em `src/api/sapos.js`, lançando erro em falha de rede ou resposta não 2xx e usando o `Sapo.id` retornado pelo servidor, conforme `contracts/api-sapos.md`
+- [X] T006 [P] Implementar `validarSapo` e as mensagens por campo em `src/utilitarios/validacao.js`, aplicando `trim` e as regras de `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, enumeração de `Sapo.periodo`, limites de `Sapo.habitat` e `Sapo.observacoes`)
+- [X] T007 [P] Criar `src/components/MensagemStatus.jsx` e `src/components/MensagemStatus.css` com as variantes `carregando`, `vazia` e `erro`, incluindo botão "Tentar novamente" quando houver ação de recuperação
+- [X] T008 Criar `src/App.jsx` como shell e `src/pages/PaginaInicial.jsx` + `src/pages/PaginaInicial.css` com cabeçalho "FrogDex" e área principal para as histórias (depende de T004; a área inicialmente vazia passa a receber US1 e US2)
 
 **Checkpoint**: fundação pronta; US1 e US2 podem começar.
 
@@ -54,8 +55,8 @@ distribuídas entre 7 integrantes.
 
 - [X] T009 [P] [US1] Criar `src/components/CartaoSapo.jsx` e `src/components/CartaoSapo.css` exibindo nome popular, espécie, região, período, habitat e observações, com "não informado" para opcionais vazios, conforme `data-model.md` (`Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
 - [X] T010 [US1] Criar `src/components/ListaSapos.jsx` e `src/components/ListaSapos.css` recebendo a lista e renderizando `CartaoSapo` por item (depende de T009)
-- [ ] T011 [US1] Implementar o carregamento em `src/pages/PaginaInicial.jsx` com `listarSapos`, estados `carregando | pronta | vazia | erro`, nova tentativa e renderização de `ListaSapos` ou `MensagemStatus` (depende de T005, T007, T008, T010)
-- [ ] T012 [US1] Validar US1 no navegador seguindo os cenários 1, 4 e 6 de `quickstart.md` e registrar data, responsável e resultado obtido
+- [X] T011 [US1] Implementar o carregamento em `src/pages/PaginaInicial.jsx` com `listarSapos`, estados `carregando | pronta | vazia | erro`, nova tentativa e renderização de `ListaSapos` ou `MensagemStatus` (depende de T005, T007, T008, T010)
+- [X] T012 [US1] Validar US1 no navegador seguindo os cenários 1, 4 e 6 de `quickstart.md` e registrar data, responsável e resultado obtido
 
 **Checkpoint**: US1 funcional e demonstrável isoladamente (MVP).
 
@@ -67,11 +68,11 @@ distribuídas entre 7 integrantes.
 
 **Teste independente**: cadastrar com os três obrigatórios e conferir o registro no topo; tentar enviar vazio e com espaços; derrubar o JSON Server e conferir a mensagem de erro com os dados preservados.
 
-- [ ] T013 [P] [US2] Criar `src/components/FormularioSapo.jsx` e `src/components/FormularioSapo.css` com campos controlados e rótulos: nome popular, espécie, região encontrada, período (`noturno | diurno | crepuscular`), habitat e observações, conforme `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, `Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
-- [ ] T014 [US2] Integrar `validarSapo` ao formulário em `src/components/FormularioSapo.jsx`, exibindo mensagem por campo e bloqueando o envio inválido (depende de T006, T013)
-- [ ] T015 [US2] Implementar o envio em `src/pages/PaginaInicial.jsx`: desabilitar durante `enviando`, chamar `cadastrarSapo`, inserir o registro retornado no topo da lista e limpar o formulário (depende de T005, T013, T014)
-- [ ] T016 [US2] Tratar falha de cadastro em `src/pages/PaginaInicial.jsx`: exibir "Não foi possível realizar o cadastro.", preservar os dados digitados e permitir nova tentativa (depende de T015)
-- [ ] T017 [US2] Validar US2 no navegador seguindo os cenários 2, 3 e 5 de `quickstart.md` e registrar data, responsável e resultado obtido
+- [X] T013 [P] [US2] Criar `src/components/FormularioSapo.jsx` e `src/components/FormularioSapo.css` com campos controlados e rótulos: nome popular, espécie, região encontrada, período (`noturno | diurno | crepuscular`), habitat e observações, conforme `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, `Sapo.periodo`, `Sapo.habitat`, `Sapo.observacoes`)
+- [X] T014 [US2] Integrar `validarSapo` ao formulário em `src/components/FormularioSapo.jsx`, exibindo mensagem por campo e bloqueando o envio inválido (depende de T006, T013)
+- [X] T015 [US2] Implementar o envio em `src/pages/PaginaInicial.jsx`: desabilitar durante `enviando`, chamar `cadastrarSapo`, inserir o registro retornado no topo da lista e limpar o formulário (depende de T005, T013, T014)
+- [X] T016 [US2] Tratar falha de cadastro em `src/pages/PaginaInicial.jsx`: exibir "Não foi possível realizar o cadastro.", preservar os dados digitados e permitir nova tentativa (depende de T015)
+- [X] T017 [US2] Validar US2 no navegador seguindo os cenários 2, 3 e 5 de `quickstart.md` e registrar data, responsável e resultado obtido
 
 **Checkpoint**: US1 e US2 funcionam juntas, cada uma verificável isoladamente.
 
@@ -79,12 +80,17 @@ distribuídas entre 7 integrantes.
 
 ## Fase 5: Polimento e preocupações transversais
 
-- [ ] T018 [P] Remover sobras do template Vite não utilizadas: `src/assets/`, ícones de `public/` referenciados apenas pelo starter e classes órfãs em `src/App.css`
-- [ ] T019 [P] Documentar em `README.md` os comandos `npm install`, `npm run api`, `npm run dev`, `npm run lint` e `npm run build`, preservando o conteúdo existente
-- [ ] T020 Executar `npm run lint` e corrigir todos os erros e avisos encontrados
-- [ ] T021 Executar `npm run build` e corrigir eventuais erros de build
-- [ ] T022 Revisar conformidade com a constituição v1.0.1: nomes em pt-BR, apenas pastas de infraestrutura em inglês, componentes abaixo de 200 linhas, textos acentuados, sem código morto
-- [ ] T023 Executar todos os cenários de `quickstart.md` (1 a 7) e registrar os resultados
+- [X] T018 [P] Remover sobras do template Vite não utilizadas: `src/assets/`, ícones de `public/` referenciados apenas pelo starter e classes órfãs em `src/App.css`
+- [X] T019 [P] Documentar em `README.md` os comandos `npm install`, `npm run api`, `npm run dev`, `npm run lint` e `npm run build`, com funcionalidades, regras e limitações em português (substituição do texto do starter autorizada pelo solicitante)
+- [X] T020 Executar `npm run lint` e corrigir todos os erros e avisos encontrados
+- [X] T021 Executar `npm run build` e corrigir eventuais erros de build
+- [X] T022 Revisar conformidade com a constituição v1.0.1: nomes em pt-BR, apenas pastas de infraestrutura em inglês, componentes abaixo de 200 linhas, textos acentuados, sem código morto
+- [ ] T023 Executar todos os cenários de `quickstart.md` (1 a 10) e registrar os resultados; cenários técnicos 1 a 9 aprovados, cenário humano 10 pendente
+
+**Evidências da integração — 2026-11-23**: [relatório de validação](./evidencias/relatorio.md),
+com ambiente, responsável, resultados e capturas para T012/T017/T022. T023 não está concluída:
+SC-002 e SC-006 exigem observação de pessoas reais, sem orientação. Não foram simulados
+participantes nem resultados de usabilidade.
 
 ---
 
@@ -111,13 +117,13 @@ distribuídas entre 7 integrantes.
 
 | Integrante | Frente | Tarefas | Entrega principal |
 |---|---|---|---|
-| 1 | Infraestrutura | T001, T002, T003,| Scripts npm, proxy, seed e estilos base |
+| 1 | Infraestrutura | T001, T002, T003 | Scripts npm, proxy e seed |
 | 2 | Shell, limpeza e build | T008, T018, T021 | Shell com `PaginaInicial`, remoção de sobras do template e build |
 | 3 | Camada de API e lint | T005, T020 | Cliente HTTP `src/api/sapos.js` e lint limpo |
 | 4 | Validação e formulário | T006, T013, T014 | Regras de validação e formulário com mensagens |
 | 5 | Página e estados | T007, T011, T015, T016 | Estados da lista, envio, erro e limpeza do formulário |
 | 6 | Listagem visual | T004, T009, T010 | Estilos base, cartão e lista de sapos |
-| 7 | QA e integração | T012, T017, T022, T023 | Evidências de US1/US2, conformidade e validação final |
+| 7 | QA, documentação e integração | T012, T017, T019, T022, T023 | README, evidências de US1/US2, conformidade e validação final |
 
 **Regra de ouro**: cada integrante só edita os arquivos das próprias tarefas. `PaginaInicial.jsx` e `FormularioSapo.jsx` têm dono único (integrantes 5 e 4) para evitar conflito de merge.
 

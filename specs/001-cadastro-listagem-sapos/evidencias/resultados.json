@@ -1,0 +1,78 @@
+{
+  "data": "2026-11-23T13:34:38.532Z",
+  "navegador": "158.0.4370.33",
+  "ambiente": "Edge headless, Windows, Node v24.19.0",
+  "portasIsoladas": [
+    15173,
+    15301
+  ],
+  "responsavel": "Agente de integração (execução assistida, não participantes humanos)",
+  "resultados": [
+    {
+      "cenario": "1 — Listagem, ordem, opcionais e layout",
+      "resultado": "aprovado",
+      "duracaoMs": 1719
+    },
+    {
+      "cenario": "2 — Cadastro mínimo, limpeza e persistência em arquivo/reinício",
+      "resultado": "aprovado",
+      "duracaoMs": 381
+    },
+    {
+      "cenario": "3 — Obrigatórios, espaços, limites e período inválido",
+      "resultado": "aprovado",
+      "duracaoMs": 1159
+    },
+    {
+      "cenario": "4 — Falha real no GET, nova tentativa e resposta HTTP 500",
+      "resultado": "aprovado",
+      "duracaoMs": 447
+    },
+    {
+      "cenario": "5 — Falha real no POST, campos preservados e recuperação",
+      "resultado": "aprovado",
+      "duracaoMs": 416
+    },
+    {
+      "cenario": "6 — Catálogo vazio e primeiro cadastro",
+      "resultado": "aprovado",
+      "duracaoMs": 326
+    },
+    {
+      "cenario": "7 — Opcionais, acentuação, limites aceitos, duplicados e telas estreitas",
+      "resultado": "aprovado",
+      "duracaoMs": 371
+    },
+    {
+      "cenario": "8a — Envio simultâneo bloqueado",
+      "resultado": "aprovado",
+      "duracaoMs": 226
+    },
+    {
+      "cenario": "8b — GET lento não apaga o POST e não duplica o registro",
+      "resultado": "aprovado",
+      "duracaoMs": 372
+    },
+    {
+      "cenario": "8c — Cadastro após falha de consulta e recuperação da lista",
+      "resultado": "aprovado",
+      "duracaoMs": 328
+    },
+    {
+      "metrica": "listagem100Ms",
+      "valor": 176
+    },
+    {
+      "metrica": "insercaoAposPostMs",
+      "valor": 14
+    },
+    {
+      "cenario": "9 — Desempenho com 100 registros e inserção após POST",
+      "resultado": "aprovado",
+      "duracaoMs": 542
+    }
+  ],
+  "errosPagina": [],
+  "dbOriginalPreservado": true,
+  "usabilidadeCincoPessoas": "pendente — exige equipe humana"
+}

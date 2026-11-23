@@ -26,7 +26,7 @@
 
 - [x] Todos os requisitos funcionais têm critério de aceitação claro
 - [x] Cenários de usuário cobrem os fluxos principais
-- [x] A funcionalidade atende aos resultados mensuráveis definidos
+- [x] Os resultados mensuráveis estão definidos e podem ser verificados
 - [x] Nenhum detalhe de implementação vazou para os requisitos
 
 ## Observações
@@ -41,3 +41,6 @@
 - Os títulos das seções estão em português; os identificadores `FR-###` e `SC-###` foram mantidos
   para uso pelas próximas fases.
 - Nenhum item pendente bloqueia `/speckit.clarify` ou `/speckit.plan`.
+- Este checklist avalia a especificação, não substitui a aceitação da implementação. Na revisão
+  de integração de 2026-11-23, SC-002 e SC-006 permanecem pendentes da avaliação com pessoas reais;
+  consulte o [relatório de validação](../evidencias/relatorio.md).

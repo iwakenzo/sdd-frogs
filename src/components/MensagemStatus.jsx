@@ -14,7 +14,7 @@ function MensagemStatus({ variante, aoTentarNovamente }) {
     >
       <p>{mensagens[variante]}</p>
       {aoTentarNovamente && (
-        <button type="button" onClick={aoTentarNovamente}>
+        <button type='button' onClick={aoTentarNovamente}>
           Tentar novamente
         </button>
       )}
