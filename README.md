@@ -7,6 +7,39 @@ da listagem sem recarregar a página.
 O projeto é executado localmente e utiliza uma API simulada com JSON Server. Não há
 necessidade de conta ou autenticação.
 
+## Projeto e integrantes
+
+**Tema:** catálogo de observações de sapos (FrogDex).
+
+**Problema que resolve:** organizar registros de sapos observados, reunindo nome popular, espécie,
+região encontrada, período de atividade, habitat e observações em um único catálogo consultável,
+com cadastro rápido e sem necessidade de conta.
+
+**Integrantes:**
+
+| Integrante | GitHub |
+|---|---|
+| André | andrelcsantos |
+| Breno | BrenoAbilio |
+| Matheus | Strilicherk |
+| Marina | marinaokamoto |
+| Mayara | MayaraLonguinho |
+| Gabriel Adryan | AdryanSacchi |
+| Gustavo Kenzo | iwakenzo |
+
+## Framework utilizado
+
+**Framework:** SpecKit, instalado com integração para o OpenCode.
+
+**Por que o grupo escolheu:** A gente escolheu o SpecKit porque ele organiza o trabalho em
+etapas: primeiro a especificação, depois o plano, as tarefas e a implementação. Isso ajudou o grupo
+a saber o que fazer em cada momento e a deixar tudo registrado no repositório. A instalação no
+OpenCode também foi simples.
+
+**Fluxo adotado:** constituição, especificação, esclarecimento, planejamento, tarefas e
+implementação, usando os comandos do SpecKit no OpenCode. A validação está registrada em
+`specs/001-cadastro-listagem-sapos/evidencias/`.
+
 ## Funcionalidades
 
 - **Consulta do catálogo:** exibe nome popular, espécie, região encontrada, período de atividade,
@@ -68,7 +101,7 @@ npm install
 O JSON Server já está incluído nas dependências de desenvolvimento; não é necessário
 instalá-lo separadamente.
 
-## Execução local
+## Como rodar
 
 Abra dois terminais na raiz do projeto e mantenha os dois processos em execução:
 
@@ -146,7 +179,35 @@ specs/             # Especificação, contratos e roteiro de validação
 vite.config.js     # Configuração do Vite e encaminhamento da API
 ```
 
-## Documentação do projeto
+## Onde estão os artefatos
+
+Todos os artefatos gerados pelo SpecKit estão versionados em `specs/001-cadastro-listagem-sapos/`:
+
+| Artefato | Caminho |
+|---|---|
+| Constituição | `.specify/memory/constitution.md` |
+| Especificação | `specs/001-cadastro-listagem-sapos/spec.md` |
+| Plano | `specs/001-cadastro-listagem-sapos/plan.md` |
+| Tarefas | `specs/001-cadastro-listagem-sapos/tasks.md` |
+| Pesquisa e decisões | `specs/001-cadastro-listagem-sapos/research.md` |
+| Modelo de dados | `specs/001-cadastro-listagem-sapos/data-model.md` |
+| Contrato da API | `specs/001-cadastro-listagem-sapos/contracts/api-sapos.md` |
+| Guia de validação | `specs/001-cadastro-listagem-sapos/quickstart.md` |
+| Evidências | `specs/001-cadastro-listagem-sapos/evidencias/` |
+
+**Divisão das tarefas por integrante:**
+
+| Frente | Tarefas | Responsável |
+|---|---|---|
+| Infraestrutura | T001, T002, T003 | Marina |
+| Shell, limpeza e build | T008, T018, T021 | Breno |
+| Camada de API e lint | T005, T020 | Gustavo |
+| Validação e formulário | T006, T013, T014 | Mayara |
+| Página e estados | T007, T011, T015, T016 | André |
+| Listagem visual | T004, T009, T010 | Gabriel |
+| QA, documentação e integração | T012, T017, T019, T022, T023 | Matheus |
+
+### Documentação complementar
 
 - [Especificação e requisitos](specs/001-cadastro-listagem-sapos/spec.md)
 - [Plano de implementação](specs/001-cadastro-listagem-sapos/plan.md)
@@ -154,6 +215,7 @@ vite.config.js     # Configuração do Vite e encaminhamento da API
 - [Contrato da API](specs/001-cadastro-listagem-sapos/contracts/api-sapos.md)
 - [Lista de tarefas](specs/001-cadastro-listagem-sapos/tasks.md)
 - [Guia de validação rápida](specs/001-cadastro-listagem-sapos/quickstart.md)
+- [Relatório de validação](specs/001-cadastro-listagem-sapos/evidencias/relatorio.md)
 
 ## Solução de problemas
 
@@ -171,3 +233,30 @@ vite.config.js     # Configuração do Vite e encaminhamento da API
 - Sem edição, exclusão, busca, filtros ou paginação na interface.
 - Sem funcionamento desconectado: consulta e cadastro dependem da API em execução.
 - Foco em navegadores modernos em computadores; publicação em produção não faz parte do escopo.
+
+## Reflexão
+
+**Que decisão o agente teria tomado sozinho e a spec evitou?**
+
+O agente podia ter decidido que sapos com o mesmo nome, espécie e região eram duplicados e bloquear
+o cadastro. A especificação deixou claro que cada cadastro é uma observação diferente, então isso
+não deveria ser impedido.
+
+**Que inconsistência a validação encontrou? Estava na spec ou no código?**
+
+A validação mostrou que o campo de período não estava sendo conferido no código, embora a
+especificação dissesse que só podia ser noturno, diurno ou crepuscular. O problema estava no código
+e foi corrigido.
+
+**Como o framework ajudou (ou atrapalhou) a coordenação do grupo?**
+
+Ajudou porque tudo ficou documentado: a especificação, as tarefas e os combinados ficaram no
+repositório, e cada um conseguia ver qual era a sua parte. Atrapalhou um pouco porque a ferramenta
+não avisa quando duas pessoas mexem no mesmo arquivo, e isso só apareceu na revisão. Também não
+substituiu a conversa do grupo para alinhar o dia a dia.
+
+**O que fariam diferente com outro framework?**
+
+Com o BMAD, os papéis seriam mais divididos, e com o GSD o trabalho seria feito em etapas menores.
+Com o OpenSpec seria mais leve. Mas, independentemente da ferramenta, a gente dividiria os arquivos
+antes de começar e faria a validação mais cedo.
