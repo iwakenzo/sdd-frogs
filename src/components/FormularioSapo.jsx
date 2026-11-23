@@ -16,16 +16,16 @@ function FormularioSapo({ aoEnviar, enviando = false }) {
   const [erros, setErros] = useState({})
 
   function atualizarCampo(evento) {
-    const { name, value } = evento.target
+    const { name: nome, value: valor } = evento.target
 
     setDados((dadosAtuais) => ({
       ...dadosAtuais,
-      [name]: value,
+      [nome]: valor,
     }))
 
     setErros((errosAtuais) => {
       const novosErros = { ...errosAtuais }
-      delete novosErros[name]
+      delete novosErros[nome]
 
       return novosErros
     })

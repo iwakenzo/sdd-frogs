@@ -67,16 +67,16 @@ function PaginaInicial() {
 
   return (
     <>
-      <header className="pagina-inicial-cabecalho"><h1>FrogDex</h1></header>
-      <main className="pagina-inicial-conteudo">
-        <section className="pagina-inicial-secao" aria-labelledby="titulo-cadastro">
-          <h2 id="titulo-cadastro">Cadastrar sapo</h2>
+      <header className='pagina-inicial-cabecalho'><h1>FrogDex</h1></header>
+      <main className='pagina-inicial-conteudo'>
+        <section className='pagina-inicial-secao' aria-labelledby='titulo-cadastro'>
+          <h2 id='titulo-cadastro'>Cadastrar sapo</h2>
           <FormularioSapo aoEnviar={aoCadastrar} enviando={enviando} />
-          {erroCadastro && <p role="alert">Não foi possível realizar o cadastro.</p>}
+          {erroCadastro && <p role='alert'>Não foi possível realizar o cadastro.</p>}
         </section>
 
-        <section className="pagina-inicial-secao" aria-labelledby="titulo-lista">
-          <h2 id="titulo-lista">Sapos cadastrados</h2>
+        <section className='pagina-inicial-secao' aria-labelledby='titulo-lista'>
+          <h2 id='titulo-lista'>Sapos cadastrados</h2>
           {estadoLista !== 'pronta' && (
             <MensagemStatus
               variante={estadoLista}

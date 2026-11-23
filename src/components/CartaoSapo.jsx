@@ -21,11 +21,11 @@ function CartaoSapo({ sapo }) {
   ]
 
   return (
-    <article className="cartao-sapo">
-      <h3 className="cartao-sapo-titulo">
+    <article className='cartao-sapo'>
+      <h3 className='cartao-sapo-titulo'>
         {textoParaExibicao(dados.nomePopular)}
       </h3>
-      <dl className="cartao-sapo-detalhes">
+      <dl className='cartao-sapo-detalhes'>
         {campos.map(({ rotulo, valor }) => {
           const texto = textoParaExibicao(valor)
           const classeDescricao =
@@ -34,8 +34,8 @@ function CartaoSapo({ sapo }) {
               : 'cartao-sapo-descricao'
 
           return (
-            <div className="cartao-sapo-linha" key={rotulo}>
-              <dt className="cartao-sapo-termo">{rotulo}</dt>
+            <div className='cartao-sapo-linha' key={rotulo}>
+              <dt className='cartao-sapo-termo'>{rotulo}</dt>
               <dd className={classeDescricao}>{texto}</dd>
             </div>
           )

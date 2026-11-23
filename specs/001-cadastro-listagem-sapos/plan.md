@@ -2,6 +2,8 @@
 
 **Branch**: `001-cadastro-listagem-sapos` | **Data**: 2026-11-20 | **Spec**: [spec.md](./spec.md)
 
+**Integração**: `dev` | **Revisão**: 2026-11-23 | **Evidências**: [relatório](./evidencias/relatorio.md)
+
 **Entrada**: Especificação da funcionalidade em `specs/001-cadastro-listagem-sapos/spec.md`
 
 ## Resumo
@@ -16,8 +18,10 @@ Aplicação web local em React + Vite que lista e cadastra sapos em um mock JSON
 
 **Armazenamento**: `db.json` na raiz, servido pelo JSON Server em `http://localhost:3001`
 
-**Testes**: sem framework automatizado nesta versão; verificação por `npm run lint`,
-`npm run build` e cenários manuais do `quickstart.md` (a constituição não exige testes automatizados)
+**Testes**: sem suíte automatizada versionada nesta versão; verificação por `npm run lint`,
+`npm run build` e cenários do `quickstart.md`. A integração usou verificação pontual no Edge com
+instrumentação externa ao projeto, sem adicionar dependências à aplicação. O cenário de
+usabilidade exige cinco pessoas reais e permanece pendente.
 
 **Plataforma alvo**: navegador moderno em desktop; execução local
 
@@ -25,13 +29,15 @@ Aplicação web local em React + Vite que lista e cadastra sapos em um mock JSON
 
 **Metas de desempenho**: lista com 100 registros visível em até 2 s; novo registro visível em até 2 s após o POST
 
-**Restrições**: execução via npm; portas 5173 (Vite) e 3001 (JSON Server); sem autenticação; sem persistência real
+**Restrições**: execução via npm; portas 5173 (Vite) e 3001 (JSON Server); sem autenticação;
+persistência local em arquivo, sem banco de dados de produção
 
 **Escala/Âmbito**: centenas de registros; um usuário local; sem paginação, busca ou edição
 
 ## Verificação da Constituição
 
-*GATE: aprovado, sem violações.*
+*Revisão técnica da constituição concluída. Aceitação final pendente de SC-002 e SC-006;
+não declarar a entrega concluída antes da validação humana.*
 
 - **I. Idioma do Código**: código, identificadores, campos JSON e mensagens em pt-BR. As pastas
   `src/components`, `src/pages` e `src/api` são exceção expressa no Princípio I da constituição
@@ -41,7 +47,8 @@ Aplicação web local em React + Vite que lista e cadastra sapos em um mock JSON
   recebem props; validação em função pura; nenhum arquivo acima de 200 linhas.
 - **III. Simplicidade**: `fetch` nativo, sem axios, sem biblioteca de formulário, sem estado global,
   sem abstrações especulativas. Única dependência nova: json-server (RF06/NFR-004).
-- **IV. Qualidade Verificável**: lint e build limpos; critérios CA01–CA05 cobertos pelo quickstart.
+- **IV. Qualidade Verificável**: lint e build limpos, cenários técnicos 1 a 9 verificados no
+  navegador com evidências. SC-002 e SC-006 dependem do cenário 10, ainda não executado com a equipe.
 
 ## Estrutura do Projeto
 
@@ -57,7 +64,8 @@ specs/001-cadastro-listagem-sapos/
 │   └── api-sapos.md
 ├── checklists/
 │   └── requirements.md
-└── tasks.md          # criado por /speckit.tasks
+├── tasks.md          # criado por /speckit.tasks
+└── evidencias/       # relatório, resultados e capturas da integração
 ```
 
 ### Código-fonte (raiz do repositório)
@@ -95,11 +103,20 @@ pura, evitando duplicação entre formulário e verificação manual.
 
 | Origem | Cobertura |
 |---|---|
-| RF01–RF02, CA01 | `data-model.md`, `contracts/api-sapos.md` (GET), `quickstart.md` cenário 1 |
-| RF03–RF07, CA02–CA03 | `data-model.md` (validação), `quickstart.md` cenários 2–3 |
-| RF08–RF09, CA04 | `research.md` decisão 4, `quickstart.md` cenário 2 |
-| RF10, CE01 | `contracts/api-sapos.md` (erros), `quickstart.md` cenário 4 |
-| RF11, CE02–CE03 | `quickstart.md` cenário 5 |
-| RF12, NFR-004 | `data-model.md` (persistência), `quickstart.md` setup |
-| RF13–RF14 | `quickstart.md` (textos e estados) |
-| SC-001–SC-006 | `quickstart.md` (cenários 1–6) |
+| FR-001–FR-002, CA01 | `data-model.md`, contrato GET, `quickstart.md` cenários 1 e 9 |
+| FR-003–FR-007, CA02–CA03 | `data-model.md`, `quickstart.md` cenários 2, 3 e 7 |
+| FR-008–FR-009, CA04 | `research.md` decisão 4, `quickstart.md` cenários 2 e 8 |
+| FR-010, CE01 | Contrato de erros, `quickstart.md` cenário 4 |
+| FR-011, CE02–CE03 | `quickstart.md` cenário 5 |
+| FR-012, NFR-004 | `data-model.md`, `quickstart.md` cenário 2 (arquivo e reinício) |
+| FR-013–FR-014 | `quickstart.md` cenários 3 a 8 (mensagens, acentos e envio simultâneo) |
+| SC-001 | `quickstart.md` cenários 1 e 9: completude e 100 registros |
+| SC-002 | `quickstart.md` cenário 10: tempo humano de até 1 minuto — pendente |
+| SC-003 | `quickstart.md` cenário 3: bloqueio de obrigatórios |
+| SC-004 | `quickstart.md` cenários 2 e 9: inserção após POST em até 2 s |
+| SC-005 | `quickstart.md` cenários 4, 5 e 6: erro de consulta, erro de cadastro e vazio |
+| SC-006 | `quickstart.md` cenário 10: quatro de cinco pessoas sem orientação — pendente |
+
+Os identificadores FR-### seguem a especificação; RF/RN usados em artefatos anteriores são
+referências históricas. CA01–CA05 também são rótulos históricos do design, não novos requisitos.
+Resultados objetivos e limitações estão registrados em `evidencias/relatorio.md`.
