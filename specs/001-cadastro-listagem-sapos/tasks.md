@@ -37,7 +37,7 @@ distribuídas entre 7 integrantes.
 
 **⚠️ Nenhuma história começa antes desta fase.**
 
-- [ ] T005 [P] Implementar `listarSapos` e `cadastrarSapo` com `fetch` em `src/api/sapos.js`, lançando erro em falha de rede ou resposta não 2xx e usando o `Sapo.id` retornado pelo servidor, conforme `contracts/api-sapos.md`
+- [X] T005 [P] Implementar `listarSapos` e `cadastrarSapo` com `fetch` em `src/api/sapos.js`, lançando erro em falha de rede ou resposta não 2xx e usando o `Sapo.id` retornado pelo servidor, conforme `contracts/api-sapos.md`
 - [ ] T006 [P] Implementar `validarSapo` e as mensagens por campo em `src/utilitarios/validacao.js`, aplicando `trim` e as regras de `data-model.md` (`Sapo.nomePopular`, `Sapo.especie`, `Sapo.regiaoEncontrada`, limites de `Sapo.habitat` e `Sapo.observacoes`)
 - [ ] T007 [P] Criar `src/components/MensagemStatus.jsx` e `src/components/MensagemStatus.css` com as variantes `carregando`, `vazia` e `erro`, incluindo botão "Tentar novamente" quando houver ação de recuperação
 - [ ] T008 Criar `src/App.jsx` como shell e `src/pages/PaginaInicial.jsx` + `src/pages/PaginaInicial.css` com cabeçalho "FrogDex" e área principal vazia (depende de T004)
